@@ -15,7 +15,7 @@
         array_push($cur_pubs,$publication);
         $doc_one=$collection->updateOne(
             ["email"=>$email],
-            ['$set'=> ['Publication'=>$cur_pubs] ]);    
+            ['$set'=> ['Publications'=>$cur_pubs] ]);    
 
         echo "Updated!";
            echo"<br>";

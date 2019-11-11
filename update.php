@@ -55,7 +55,7 @@
           <div class="form-group">
             <label for="inputPassword3" class="col-sm-2 control-label">Update your research interests</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" id="pass" name="pass" placeholder="Research Interests" required>
+              <input type="text" class="form-control" id="research" name="research" placeholder="Research Interests" required>
             </div>
           </div>
           <div class="form-group">
@@ -68,7 +68,7 @@
            <div class="form-group">
             <label for="inputCpassword3" class="col-sm-2 control-label">Update your educational background</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" id="cpass" name="cpass" onblur="chk()" placeholder="Educational Background" required>
+              <input type="text" class="form-control" id="edu" name="edu" placeholder="Educational Background" required>
             <div id="error"></div>
             </div>
           </div>
