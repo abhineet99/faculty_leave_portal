@@ -51,14 +51,7 @@
             echo "<br>";
 
         }
-        $arrays = (array)(
-            
-            "hello"
-        );
-        print_r( $arrays[0]);
-        $doc_one=$collection->updateOne(
-                                        ["name"=>"Abhineet"],
-                                        ['$set'=> ['Publication'=>$arrays] ]);
+
      
 
 	}
