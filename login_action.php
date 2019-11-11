@@ -3,7 +3,7 @@
 <?php
     
     if(chkLogin()){
-        header("Location: home.php");
+        header("Location: update.php");
     }
 ?>
 <?php
@@ -32,7 +32,7 @@
                     
                     if($var){
                         
-                    header("Location: home.php");
+                    header("Location: update.php");
                     }
                     else{
                         echo "Some error";

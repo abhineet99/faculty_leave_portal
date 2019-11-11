@@ -1,8 +1,11 @@
 <?php
     require_once 'library.php';
-    if(chkLogin()){
-        header("Location: home.php");
+   // require_once 'login_action.php';
+    if(!chkLogin()){
+        header("Location: login.php");
     }
+    $email = $_SESSION['email'];
+    echo $email;
 ?>
 <html>
     <head>
@@ -27,19 +30,19 @@
           <div class="form-group">
             <label for="inputFname3" class="col-sm-2 control-label">Add a publication, Enter Title</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" id="inputFname3" name="fname" placeholder="Publication Title" required>
+              <input type="text" class="form-control" id="inputFname3" name="pub_title" placeholder="Publication Title" required>
             </div>
           </div>
           <div class="form-group">
             <label for="inputLname3" class="col-sm-2 control-label">Enter the conference's names</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" id="inputLname3" name="lname" placeholder="Conference" required>
+              <input type="text" class="form-control" id="inputLname3" name="conf_name" placeholder="Conference" required>
             </div>
           </div>    
           <div class="form-group">
             <label for="inputEmail3" class="col-sm-2 control-label">Enter the year</label>
             <div class="col-sm-10">
-              <input type="email" class="form-control" id="inputEmail3" name="email" placeholder="Conference Year" required>
+              <input type="text" class="form-control" id="inputEmail3" name="year" placeholder="Conference Year" required>
             </div>
           </div>
           <div class="form-group">

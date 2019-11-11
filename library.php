@@ -19,17 +19,14 @@
             echo "<br>";
 
         }
-        $arrays = array(
+        $arrays = (array)(
             
-            "How to kill Vineet",
-            "Deep Learning for fudu guy detection",
-            "Kyu pdh rha h bro",
-            "last publication"
-        
+            "hello"
         );
+        print_r( $arrays[0]);
         $doc_one=$collection->updateOne(
                                         ["name"=>"Abhineet"],
-                                        ['$set'=> ['pubs'=>$arrays] ]);
+                                        ['$set'=> ['Publication'=>$arrays] ]);
      
 
 	}

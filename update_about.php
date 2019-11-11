@@ -4,21 +4,19 @@
 
    if(isset($_POST['reg'])){
        
-        $fname = $_POST['About'];
+        $about = $_POST['About'];
+        $email = $_SESSION['email'];
+        
         $doc_one=$collection->updateOne(
-            ["name"=>"Abhineet"],
-            ['$set'=> ['pubs'=>$arrays] ]);
+            ["email"=>$email],
+            ['$set'=> ['About'=>$about] ]);
     
 
-        if($query){
-            register($arrays);
-            header("Location: login.php");
-            }
-       else{
+
         echo "Updated!";
            echo"<br>";
         echo "<a href='register.php'>Update other stuff</a>  or <a href ='login.php'>logout</a>";
-       }
+       
 }
 
 ?>
