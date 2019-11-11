@@ -5,8 +5,10 @@
    if(isset($_POST['reg'])){
        
         $edu = $_POST['edu'];
+       // echo $edu;
         $email = $_SESSION['email'];
-        
+       // echo $email;
+        global $collection;
         $doc_one=$collection->updateOne(
             ["email"=>$email],
             ['$set'=> ['Educational Background'=>$edu] ]);
@@ -15,7 +17,8 @@
 
         echo "Updated!";
            echo"<br>";
-        echo "<a href='register.php'>Update other stuff</a>  or <a href ='login.php'>logout</a>";
+        echo "<a href='home.php'>Home</a> ";
+
        
 }
 

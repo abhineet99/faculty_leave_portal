@@ -5,6 +5,7 @@
    if(isset($_POST['reg'])){
        
         $about = $_POST['About'];
+        //echo $about;
         $email = $_SESSION['email'];
         
         $doc_one=$collection->updateOne(
@@ -15,7 +16,7 @@
 
         echo "Updated!";
            echo"<br>";
-        echo "<a href='register.php'>Update other stuff</a>  or <a href ='login.php'>logout</a>";
+        echo "<a href='home.php'>Home</a> ";
        
 }
 

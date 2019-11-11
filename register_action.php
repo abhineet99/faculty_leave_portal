@@ -21,7 +21,7 @@
             
             "First Name"    => $fname,
             "Last Name"     => $lname,
-            "Email Address" => $email,
+            "email" => $email,
             "Password"      => $pass
         
         );

@@ -10,12 +10,44 @@
         //$collection->insertOne(["name"=>"Piyush","Designation"=>"LmaoProf","ResearchIntern"=>"AishHiAish"]);
         $doclist=$collection->find();
         foreach($doclist as $doc){
-            echo $doc['name'];
+            
+            echo $doc['First Name'];
+            echo " ";
+            echo $doc['Last Name'];
             echo "<br>";
-            echo $doc['Designation'];
-            echo "<br>";
-            echo $doc['ResearchIntern'];
-            echo "<br>";
+            echo $doc['email'];
+            echo "<br> <br>";
+            
+            if(!is_null($doc['Designation'])){
+                echo "Designation: <br>";
+                echo $doc['Designation'];
+                echo "<br> <br>";
+            }
+            if(!is_null($doc['About'])){
+                echo "About: <br>";
+                echo $doc['About'];
+                echo "<br> <br>";
+            }
+            if(!is_null($doc['Educational Background'])){
+                echo "Educational background <br>";
+                echo $doc['Educational Background'];
+
+                echo "<br> <br>";
+            }
+            if(!is_null($doc['Publications'])){
+            echo "Publications <br>";
+            foreach($doc['Publications'] as $pub){
+                echo $pub;
+                echo"<br> <br>";
+            }
+            }
+            if(!is_null($doc['Research Interests'])){
+                echo "Research Interests <br>";
+                echo $doc['Research Interests'];
+                echo "<br>";
+            }
+            echo "-------------------------------------------------------------";
+            echo "<br>";       
             echo "<br>";
 
         }

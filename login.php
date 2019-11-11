@@ -1,10 +1,11 @@
 <?php
-    
+
     require_once 'library.php';
 	display_db();
     if(chkLogin()){
         header("Location: home.php");
     }
+
 ?>
 <html>
     <head>

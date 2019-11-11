@@ -11,15 +11,17 @@
         $publication=$pub_title.", ".$conf_name.", ".$year;
         $doc_one=$collection->findOne(
             ["email"=>$email]);
-        $cur_pubs=(array)$doc['Publications'];
+        $cur_pubs=(array)$doc_one['Publications'];
+       // print_r($cur_pubs);
         array_push($cur_pubs,$publication);
+       // print_r($cur_pubs);
         $doc_one=$collection->updateOne(
             ["email"=>$email],
             ['$set'=> ['Publications'=>$cur_pubs] ]);    
 
         echo "Updated!";
            echo"<br>";
-        echo "<a href='register.php'>Update other stuff</a>  or <a href ='login.php'>logout</a>";
+        echo "<a href='home.php'>Home</a> ";
        
 }
 

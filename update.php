@@ -64,6 +64,19 @@
             </div>
           </div>
     </form>
+    <form class="form-horizontal" action="update_desig.php" method="post">
+          <div class="form-group">
+            <label for="inputPassword3" class="col-sm-2 control-label">Update your designation</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="desig" name="desig" placeholder="Designation" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <button type="submit" class="btn btn-default" name="reg">Update</button>
+            </div>
+          </div>
+    </form>
     <form class="form-horizontal" action="update_edu.php" method="post">      
            <div class="form-group">
             <label for="inputCpassword3" class="col-sm-2 control-label">Update your educational background</label>

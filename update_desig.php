@@ -4,12 +4,12 @@
 
    if(isset($_POST['reg'])){
        
-        $research = $_POST['research'];
+        $desig = $_POST['desig'];
         $email = $_SESSION['email'];
         
         $doc_one=$collection->updateOne(
             ["email"=>$email],
-            ['$set'=> ['Research Interests'=>$research] ]);
+            ['$set'=> ['Designation'=>$desig] ]);
     
 
 
