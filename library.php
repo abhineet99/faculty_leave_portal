@@ -1,7 +1,11 @@
 <?php
 	require_once __DIR__ . "/vendor/autoload.php";
     // echo extension_loaded("mongodb") ? "loaded\n" : "not loaded\n";
-    session_start();
+
+    if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
+    
 	function display_db(){
 		$m=(new MongoDB\Client);
 		$dp=$m->try_1_nov_9;
