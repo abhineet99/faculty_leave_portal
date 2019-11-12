@@ -10,38 +10,53 @@
         //$collection->insertOne(["name"=>"Piyush","Designation"=>"LmaoProf","ResearchIntern"=>"AishHiAish"]);
         $doclist=$collection->find();
         foreach($doclist as $doc){
-            
+            $email=$doc['email'];
             echo $doc['First Name'];
             echo " ";
             echo $doc['Last Name'];
             echo "<br>";
             echo $doc['email'];
             echo "<br> <br>";
-            $query=$collection->findOne({'email'=> $email,{'Designation' : {$exists : true }}});
-            if(!is_null($doc['Designation'])){
+            
+            $query=$collection->findOne(
+                    ['email'=>$email],
+                    ['projection'=>['_id'=>0,'Designation'=>1]]);
+            if(sizeof($query)>0){
                 echo "Designation: <br>";
                 echo $doc['Designation'];
                 echo "<br> <br>";
             }
-            if(!is_null($doc['About'])){
+            $query=$collection->findOne(
+                ['email'=>$email],
+                ['projection'=>['_id'=>0,'About'=>1]]);
+            if(sizeof($query)>0){
                 echo "About: <br>";
                 echo $doc['About'];
                 echo "<br> <br>";
             }
-            if(!is_null($doc['Educational Background'])){
+            $query=$collection->findOne(
+                ['email'=>$email],
+                ['projection'=>['_id'=>0,'Educational Background'=>1]]);            
+            if(sizeof($query)>0){
                 echo "Educational background <br>";
                 echo $doc['Educational Background'];
 
                 echo "<br> <br>";
             }
-            if(!is_null($doc['Publications'])){
+            $query=$collection->findOne(
+                ['email'=>$email],
+                ['projection'=>['_id'=>0,'Publications'=>1]]);            
+            if(sizeof($query)>0){
             echo "Publications <br>";
             foreach($doc['Publications'] as $pub){
                 echo $pub;
                 echo"<br> <br>";
             }
             }
-            if(!is_null($doc['Research Interests'])){
+            $query=$collection->findOne(
+                ['email'=>$email],
+                ['projection'=>['_id'=>0,'Research Interests'=>1]]);            
+            if(sizeof($query)>0){
                 echo "Research Interests <br>";
                 echo $doc['Research Interests'];
                 echo "<br>";
