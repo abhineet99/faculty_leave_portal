@@ -17,7 +17,7 @@
             echo "<br>";
             echo $doc['email'];
             echo "<br> <br>";
-            
+            $query=$collection->findOne({'email'=> $email,{'Designation' : {$exists : true }}});
             if(!is_null($doc['Designation'])){
                 echo "Designation: <br>";
                 echo $doc['Designation'];
@@ -63,7 +63,7 @@
     
     function chkemail($email){
         global $collection;
-        $temp = $collection->findOne(array('Email Address'=> $email));
+        $temp = $collection->findOne(array('email'=> $email));
         if(empty($temp)){
         return true;
         }
@@ -77,7 +77,7 @@
         
         $_SESSION["userLoggedIn"] = 1;
         global $collection;
-        $temp = $collection->findOne(array('Email Address'=> $email));
+        $temp = $collection->findOne(array('email'=> $email));
         $_SESSION["uname"] = $temp["First Name"];
         $_SESSION["email"] = $email;
         return true;
