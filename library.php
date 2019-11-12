@@ -101,13 +101,15 @@
     function chkLogin(){
         
         //var_dump($_SESSION);
-        
-        if($_SESSION["userLoggedIn"]== 1){
-            return true;
+        if(sizeof($_SESSION)>0){
+            if($_SESSION["userLoggedIn"]== 1){
+                return true;
+            }
+            else{
+                return false;
+            }
         }
-        else{
-            return false;
-        }
+        return false;    
     }
     function removeall(){
         unset($_SESSION["userLoggedIn"]);
