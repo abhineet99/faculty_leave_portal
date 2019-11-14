@@ -15,6 +15,7 @@
     if(isset($_POST['logout'])){
         
         $var = removeall();
+		session_destroy();
         if($var){
             header("Location:login.php");
         }

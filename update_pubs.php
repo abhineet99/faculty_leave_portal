@@ -21,7 +21,7 @@
 
         echo "Updated!";
            echo"<br>";
-        echo "<a href='home.php'>Home</a> ";
+        echo "<a href='prof_loggedin.php'>Home</a> ";
        
 }
 

@@ -3,30 +3,42 @@
     require_once 'library.php';
 	display_db();
     if(chkLogin()){
-        header("Location: home.php");
+        header("Location: prof_loggedin.php");
     }
 
 ?>
+
+<!DOCTYPE html>
 <html>
-    <head>
-        <link href="css/bootstrap.min.css" rel="stylesheet">
-    </head>
-    <body>
-        <div class="container">
-            <form class="form-horizontal" method="post" action="login_action.php">
-                <div class="form-group">
-                    <label class="sr-only" for="exampleInputEmail3">Email address</label>
-                    <input type="email" class="form-control" id="exampleInputEmail3" name="email" placeholder="Email" required>
-                </div>
-                <div class="form-group">
-                    <label class="sr-only" for="exampleInputPassword3">Password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword3" name="pass" placeholder="Password" required>
-                </div>
-                <button type="submit" name="login" class="btn btn-default">Sign in</button>
-                </br></br>
-                <a href="register.php">New here? Sign up</a>
-                
-            </form>
-        </div>
-    </body>
+<head>
+	<title>Registration system PHP and MySQL</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+
+	<div class="header">
+		<h2>Login</h2>
+	</div>
+	
+	<form method="post" action="login_action.php">
+		<div class="input-group">
+			<label>Username</label>
+			<input type="text" id="exampleInputEmail3" name="email" placeholder="Email" required>
+		</div>
+		<div class="input-group">
+			<label>Password</label>
+			<input type="password" id="exampleInputPassword3" name="pass" placeholder="Password" required>
+		</div>
+		<div class="input-group">
+			<button type="submit" class="btn" name="login">Login</button>
+		</div>
+		<p>
+			Not yet a member? <a href="register.php">Sign up</a>
+		</p>
+	</form>
+
+
+</body>
 </html>
+
+

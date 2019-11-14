@@ -9,7 +9,6 @@
 <?php
 
    if(isset($_POST['reg'])){
-       
         $fname = $_POST['fname'];
         $lname = $_POST['lname'];
         $email = $_POST['email'];
@@ -29,6 +28,7 @@
         $query = chkemail($email);
         if($query){
             register($arrays);
+			//session_destroy();
             header("Location: login.php");
             }
        else{
