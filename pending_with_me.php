@@ -18,5 +18,14 @@
         echo "You are not a cross cutting faculty!!\n";
         echo " <a href='prof_loggedin.php'>Home</a> ";
     }
-    if($post=='hod')
+    else{
+        if($post=='hod'){
+            //need to query department
+            $query="SELECT department from facult.faculty where email='$email";
+            $dept=pg_query($query);
+            $dept=pg_fetch_row($dept);
+            $dept=$dept[0];
+            $query="SELECT facult.leave.leave_id,facult.leave.sender_id,facult.leave.doa from facult.faculty where email='$email";
+        }
+    }
 	?>
