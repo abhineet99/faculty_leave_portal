@@ -45,7 +45,10 @@ if(isset($_POST['forward']))
     $result=pg_fetch_row($result);
     $dos = $result[0];
     $doe= $result[1];
-    $days=$doe-$dos;
+    $query=" SELECT (DATE_PART('day', '$dos'::timestamp - '$doe'::timestamp))";
+	$result=pg_query($query);
+	$result=pg_fetch_row($result);
+	$days=$result[0];
 
     //query for applier's ID
     $query="Select sender_id from facult.leave where facult.leave.leave_id=$leave_id";
@@ -53,13 +56,13 @@ if(isset($_POST['forward']))
     $sender_id = pg_fetch_row($sender_id);
     $sender_id=$sender_id[0];
     //query to get available leaves
-    $query="Select leaves_left,post,leaves_borrowed from facult.faculty where facult.email='$sender_id'";
+    $query="Select leaves_left,post,leaves_borrowed from facult.faculty where faculty.email='$sender_id'";
     $result=pg_query($query);
     $result=pg_fetch_row($result);
     $apply_post=$result[1];
     $leaves_left=$result[0];
     $leaves_borrowed=$result[2];
-    $query="SELECT max_leaves from facult.faculty where name='$apply_post'";
+    $query="SELECT max_leaves from facult.posts where name='$apply_post'";
     $result=pg_query($query);
     $result=pg_fetch_row($result);
     $max_leaves=$result[0];
