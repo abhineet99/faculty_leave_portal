@@ -12,7 +12,7 @@ if(isset($_POST['leavee'])){
 	$startdate = $_POST['startdate'];
         $endate = $_POST['endate'];
         $comment = $_POST['comment'];
-		echo $comment;
+		//echo $comment;
 		$facult=pg_connect("host=localhost port =5432 dbname=prof_leave user =postgres password = mahi121");
 		
 		$query="SELECT COUNT(*) from facult.leave where sender_id='$email' AND status=0";
@@ -47,7 +47,7 @@ if(isset($_POST['leavee'])){
 		$leaveid = pg_fetch_row($leaveid);
 		$leaveid=$leaveid[0];
 		
-		$query="INSERT INTO facult.comments (leave_id,sender_id,writer_post,doc,comment) VALUES ('$leaveid','$email','$post','$startdate','$comment')";
+		$query="INSERT INTO facult.comments (leave_id,sender_id,writer_post,comment) VALUES ('$leaveid','$email','$post','$comment')";
 		pg_query($query);
 		}
 
