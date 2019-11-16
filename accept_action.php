@@ -12,7 +12,7 @@
 if(isset($_POST['forward']))
 {
 	$leave_id=$_POST['leave_id'];
-	echo "asdfghjkjhgfdfghj,hgfsdfghjmnfddfghnm";
+	//echo "asdfghjkjhgfdfghj,hgfsdfghjmnfddfghnm";
 	$query="Select sender_id from facult.leave where facult.leave.leave_id=$leave_id";
     $sender_id=pg_query($query);
     $sender_id = pg_fetch_row($sender_id);
@@ -36,20 +36,48 @@ if(isset($_POST['forward']))
 	else
 		 $button_name="Forward";
 	 $comment = $_POST['comment'];
-	 echo $leave_id;
+	 //echo $leave_id;
 	 if($button_name=="Accept")
 	 {
     $facult=pg_connect("host=localhost port =5432 dbname=prof_leave user =postgres password = mahi121");
+    $query="SELECT dos,doe from facult.leave where leave_id=$leave_id ";
+    $result=pg_query($query);
+    $result=pg_fetch_row($result);
+    $dos = $result[0];
+    $doe= $result[1];
+    $days=$doe-$dos;
+
+    //query for applier's ID
+    $query="Select sender_id from facult.leave where facult.leave.leave_id=$leave_id";
+    $sender_id=pg_query($query);
+    $sender_id = pg_fetch_row($sender_id);
+    $sender_id=$sender_id[0];
+    //query to get available leaves
+    $query="Select leaves_left,post,leaves_borrowed from facult.faculty where facult.email='$sender_id'";
+    $result=pg_query($query);
+    $result=pg_fetch_row($result);
+    $apply_post=$result[1];
+    $leaves_left=$result[0];
+    $leaves_borrowed=$result[2];
+    $query="Select max_leaves from facult.faculty where name='$apply_post'";
+    $result=pg_query($query);
+    $result=pg_fetch_row($result);
+    $max_leaves=$result[0];
+
+    if($days>$leaves_left){
+        $diff=$days-$leaves_left;
+        if($diff>($max_leaves-$leaves_borrowed)){
+            //these much leaves cant be given
+
+        }
+    }
     $query="UPDATE facult.leave SET status=1 where leave_id=$leave_id ";
     $execute=pg_query($query);
     $query="Select post from facult.faculty where facult.faculty.email='$email'";
     $post=pg_query($query);
     $post = pg_fetch_row($post);
     $post=$post[0];
-    $query="Select sender_id from facult.leave where facult.leave.leave_id=$leave_id";
-    $sender_id=pg_query($query);
-    $sender_id = pg_fetch_row($sender_id);
-    $sender_id=$sender_id[0];
+
     if($comment!=NULL){
         $query="INSERT INTO facult.comments(leave_id,sender_id,writer_post,comment) VALUES($leave_id,'$sender_id','$post','$comment')";
         $execute=pg_query($query);

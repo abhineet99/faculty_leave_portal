@@ -37,18 +37,51 @@ if(isset($_POST['leavee'])){
 		$nextpost = pg_fetch_row($nextpost);
 		echo $nextpost[0];
 		$nextpost=$nextpost[0];
+		$days=$endate-$startdate;
+
+
+
+		$sender_id=$email;
+		//query to get available leaves
+		$query="Select leaves_left,post,leaves_borrowed from facult.faculty where facult.email='$sender_id'";
+		$result=pg_query($query);
+		$result=pg_fetch_row($result);
+		$apply_post=$result[1];
+		$leaves_left=$result[0];
+		$leaves_borrowed=$result[2];
+		$query="Select max_leaves from facult.faculty where name='$apply_post'";
+
+		$result=pg_query($query);
+		$result=pg_fetch_row($result);
+		$max_leaves=$result[0];	
 		
-		$query="INSERT INTO facult.leave(sender_id,pending_id,status,dos,doe) VALUES ('$email'
-		,'$nextpost',0,'$startdate','$endate')";
-		pg_query($query);
-		
-		$query="SELECT leave_id from facult.leave where sender_id='$email' AND status=0";
-		$leaveid=pg_query($query);
-		$leaveid = pg_fetch_row($leaveid);
-		$leaveid=$leaveid[0];
-		
-		$query="INSERT INTO facult.comments (leave_id,sender_id,writer_post,comment) VALUES ('$leaveid','$email','$post','$comment')";
-		pg_query($query);
+		if($days>$leaves_left){
+			$diff=$days-$leaves_left;
+			if($diff>($max_leaves-$leaves_borrowed)){
+				//these much leaves cant be given
+				echo "You can't take these many leaves!!";
+				echo "<br>";
+				echo "<a href='prof_loggedin.php'>Home</a>";
+			}
+
+		}
+		else{
+			if($days>$leaves_left){
+				$diff=$days-$leaves_left;
+				$comment=$comment.' BORROWED $diff Leaves from next year';
+			}
+			$query="INSERT INTO facult.leave(sender_id,pending_id,status,dos,doe) VALUES ('$email'
+			,'$nextpost',0,'$startdate','$endate')";
+			pg_query($query);
+			$query="SELECT leave_id from facult.leave where sender_id='$email' AND status=0";
+			$leaveid=pg_query($query);
+			$leaveid = pg_fetch_row($leaveid);
+			$leaveid=$leaveid[0];
+			
+			$query="INSERT INTO facult.comments (leave_id,sender_id,writer_post,comment) VALUES ('$leaveid','$email','$post','$comment')";
+			pg_query($query);
+			echo "Done <a href='prof_loggedin.php'>Home</a>";
+			}
 		}
 
 }
