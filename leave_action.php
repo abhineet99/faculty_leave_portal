@@ -71,7 +71,8 @@ if(isset($_POST['leavee'])){
 			}
 			else{
 				$diff=$days-$leaves_left;
-				$comment=$comment.' BORROWED $diff Leaves from next year';
+				$diff=strval($diff);
+				$comment=$comment.' BORROWED '.$diff.' Leaves from next year';
 			
 				$query="INSERT INTO facult.leave(sender_id,pending_id,status,dos,doe) VALUES ('$email'
 				,'$nextpost',0,'$startdate','$endate')";
