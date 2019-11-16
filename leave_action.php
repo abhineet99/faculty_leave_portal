@@ -69,13 +69,26 @@ if(isset($_POST['leavee'])){
 				echo "<br>";
 				echo "<a href='prof_loggedin.php'>Home</a>";
 			}
-
-		}
-		else{
-			if($days>$leaves_left){
+			else{
 				$diff=$days-$leaves_left;
 				$comment=$comment.' BORROWED $diff Leaves from next year';
+			
+				$query="INSERT INTO facult.leave(sender_id,pending_id,status,dos,doe) VALUES ('$email'
+				,'$nextpost',0,'$startdate','$endate')";
+				pg_query($query);
+				$query="SELECT leave_id from facult.leave where sender_id='$email' AND status=0";
+				$leaveid=pg_query($query);
+				$leaveid = pg_fetch_row($leaveid);
+				$leaveid=$leaveid[0];
+				
+				$query="INSERT INTO facult.comments (leave_id,sender_id,writer_post,comment) VALUES ('$leaveid','$email','$post','$comment')";
+				pg_query($query);
+				echo "Done <a href='prof_loggedin.php'>Home</a>";
+
 			}
+			
+		}
+		else{
 			$query="INSERT INTO facult.leave(sender_id,pending_id,status,dos,doe) VALUES ('$email'
 			,'$nextpost',0,'$startdate','$endate')";
 			pg_query($query);
