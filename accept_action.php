@@ -45,7 +45,7 @@ if(isset($_POST['forward']))
     $result=pg_fetch_row($result);
     $dos = $result[0];
     $doe= $result[1];
-    $query=" SELECT (DATE_PART('day', '$dos'::timestamp - '$doe'::timestamp))";
+    $query=" SELECT (DATE_PART('day', '$doe'::timestamp - '$dos'::timestamp))";
 	$result=pg_query($query);
 	$result=pg_fetch_row($result);
 	$days=$result[0];
@@ -66,17 +66,18 @@ if(isset($_POST['forward']))
     $result=pg_query($query);
     $result=pg_fetch_row($result);
     $max_leaves=$result[0];
-
     if($days>$leaves_left){
         $diff=$days-$leaves_left;
         $leaves_borrowed=$leaves_borrowed+$diff;
         $leaves_left=0;
-        $query="UPDATE facult.faculty SET leaves_left=$leaves_left,leaves_borrowed=$leaves_borrowed where  faculty.email='$sender_id'";
+		echo $leaves_borrowed;
+        $query="UPDATE facult.faculty SET leaves_left=0,leaves_borrowed=$leaves_borrowed where  faculty.email='$sender_id'";
         pg_query($query);
     }
     else{
         $leaves_left= $leaves_left-$days;
         $query="UPDATE facult.faculty SET leaves_left=$leaves_left where  faculty.email='$sender_id'";
+		pg_query($query);
     }
     $query="UPDATE facult.leave SET status=1 where leave_id=$leave_id ";
     $execute=pg_query($query);
