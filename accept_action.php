@@ -59,17 +59,21 @@ if(isset($_POST['forward']))
     $apply_post=$result[1];
     $leaves_left=$result[0];
     $leaves_borrowed=$result[2];
-    $query="Select max_leaves from facult.faculty where name='$apply_post'";
+    $query="SELECT max_leaves from facult.faculty where name='$apply_post'";
     $result=pg_query($query);
     $result=pg_fetch_row($result);
     $max_leaves=$result[0];
 
     if($days>$leaves_left){
         $diff=$days-$leaves_left;
-        if($diff>($max_leaves-$leaves_borrowed)){
-            //these much leaves cant be given
-
-        }
+        $leaves_borrowed=$leaves_borrowed+$diff;
+        $leaves_left=0;
+        $query="UPDATE facult.faculty SET leaves_left=$leaves_left,leaves_borrowed=$leaves_borrowed where  faculty.email='$sender_id'";
+        pg_query($query);
+    }
+    else{
+        $leaves_left= $leaves_left-$days;
+        $query="UPDATE facult.faculty SET leaves_left=$leaves_left where  faculty.email='$sender_id'";
     }
     $query="UPDATE facult.leave SET status=1 where leave_id=$leave_id ";
     $execute=pg_query($query);
