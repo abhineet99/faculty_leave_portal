@@ -10,7 +10,9 @@
 <?php
 
     //getting my post
-    $query="SELECT post from facult.faculty where email='$email";
+	$facult=pg_connect("host=localhost port =5432 dbname=prof_leave user =postgres password = mahi121");
+		
+    $query="SELECT post from facult.faculty where email='$email'";
     $post=pg_query($query);
     $post=pg_fetch_row($post);
     $post=$post[0];
@@ -21,18 +23,44 @@
     else{
         if($post=='hod'){
             //need to query department
-            $query="SELECT department from facult.faculty where email='$email";
+            $query="SELECT department from facult.faculty where email='$email'";
             $dept=pg_query($query);
             $dept=pg_fetch_row($dept);
             $dept=$dept[0];
-            $query="SELECT facult.leave.leave_id,facult.leave.sender_id,facult.leave.doa from facult.faculty,facult.leave where facult.faculty.email=facult.leave.sender_id AND facult.faculty.department='$dept' AND facult.leave.pending_id='hod' AND facult.leave.status=0";
-
+			//echo $dept;
+            $query="SELECT * from facult.faculty,facult.leave where faculty.email=leave.sender_id AND facult.faculty.department='$dept' AND facult.leave.pending_id='hod' AND facult.leave.status=0";
+			$result=pg_query($query);
+			echo "Leave id        \t  Sender_id       \t  Date of Apply";
+			echo "<br />\n";
+			while ($row = pg_fetch_row($result)) 
+		{
+			$leave_id=$row[0];
+			//$pending_id=$row[2];
+			$senderid=$row[1];
+			$doa=$row[4];
+			echo "$leave_id    \t     $senderid \t       $doa  ";
+			echo "<a href='show_leaves.php?variable1=$leave_id'>clickme</a>";
+			echo "<br />\n";
             //INSERT CODE to display all these parameters(comments)
         }
+		}
         else{
             //no need to fetch department in this case
-            $query="SELECT facult.leave.leave_id,facult.leave.sender_id,facult.leave.doa from facult.leave where facult.leave.pending_id='$post' AND facult.leave.status=0";
-            //print all these results and give link to leave details (comments)
+            $query="SELECT * from facult.leave where facult.leave.pending_id='$post' AND facult.leave.status=0";
+            $result=pg_query($query);
+			echo "Leave id        \t  Sender_id       \t  Date of Apply";
+			echo "<br />\n";
+			while ($row = pg_fetch_row($result)) 
+		{
+			$leave_id=$row[0];
+			//$pending_id=$row[2];
+			$senderid=$row[1];
+			$doa=$row[4];
+			echo "$leave_id    \t     $senderid  \t       $doa  ";
+			echo "<a href='show_leaves.php?variable1=$leave_id'>clickme</a>";
+			echo "<br />\n";
+			//print all these results and give link to leave details (comments)
         }
+		}
     }
 	?>

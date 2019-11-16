@@ -40,7 +40,7 @@
                 else{
                     echo "You have entered a wrong password";
                     echo "<br>";
-                    echo "Either <a href='register.php'>Register</a> with the new Email ID or <a href='login.php'>Login</a> with an already registered ID";
+                    echo "Either <a href='register'>Register</a> with the new Email ID or <a href='login.php'>Login</a> with an already registered ID";
                 }
                 
             

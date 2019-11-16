@@ -46,15 +46,16 @@ Released   : 20110825
 			<!--<li><a href="#">Photos</a></li>
 			<li><a href="#">About</a></li>
 			<li><a href="#">Links</a></li>-->
-			<li><a href="useful_links.html">Leave Status</a></li>
+			<li><a href="leave_status.php">Leave Status</a></li>
 			<li><a href="home_faculty.php">Home</a></li>
 			<li><a href="logout.php">Logout</a></li>
 			<?php $facult=pg_connect("host=localhost port =5432 dbname=prof_leave user =postgres password = mahi121");
-		$query="Select * from facult.faculty where facult.faculty.email='$email'";
+		$query="Select post from facult.faculty where facult.faculty.email='$email'";
 		$result=pg_query($query);
-		$resultArr = pg_fetch_all($result);
-		if($result['post']!='faculty')
-		print "<li><a href='logout.php'>pending</a></li>";?>
+		$result = pg_fetch_row($result);
+		$result=$result[0];
+		if($result!='faculty')
+		print "<li><a href='pending_with_me.php'>pending</a></li>";?>
 		</ul>
 	</div>
 	<!-- end #menu -->
