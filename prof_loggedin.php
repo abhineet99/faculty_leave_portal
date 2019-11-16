@@ -42,13 +42,19 @@ Released   : 20110825
 		<ul>
 			<li class="prof_loggedin.php"><a href="prof_loggedin.php">Profile</a></li>
 			<li><a href="update.php">Update Profile</a></li>
-			<li><a href="education.html">Apply Leave</a></li>
+			<li><a href="apply_leave.php">Apply Leave</a></li>
 			<!--<li><a href="#">Photos</a></li>
 			<li><a href="#">About</a></li>
 			<li><a href="#">Links</a></li>-->
 			<li><a href="useful_links.html">Leave Status</a></li>
 			<li><a href="home_faculty.php">Home</a></li>
 			<li><a href="logout.php">Logout</a></li>
+			<?php $facult=pg_connect("host=localhost port =5432 dbname=prof_leave user =postgres password = mahi121");
+		$query="Select * from facult.faculty where facult.faculty.email='$email'";
+		$result=pg_query($query);
+		$resultArr = pg_fetch_all($result);
+		if($result['post']!='faculty')
+		print "<li><a href='logout.php'>pending</a></li>";?>
 		</ul>
 	</div>
 	<!-- end #menu -->

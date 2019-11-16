@@ -42,8 +42,8 @@
 </nav>
   
 <div class="container">
-  <h3>Navbar With Dropdown</h3>
-  <p>This example adds a dropdown menu for the "Page 1" button in the navigation bar.</p>
+  <h3>Professors Profiles </h3>
+  <p><?php  display_db(); ?></p>
 </div>
 
 </body>

@@ -1,7 +1,7 @@
 <?php
 
     require_once 'library.php';
-	display_db();
+	//display_db();
     if(chkLogin()){
         header("Location: prof_loggedin.php");
     }
