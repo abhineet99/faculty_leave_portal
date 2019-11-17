@@ -31,6 +31,9 @@
                   
                     
                     if($var){
+                        if($email=='admin@mydb.com')
+                        header("Location::admin.php");
+                        else
                     header("Location: prof_loggedin.php");
                     }
                     else{
