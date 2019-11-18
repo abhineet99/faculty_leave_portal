@@ -32,7 +32,7 @@
                     
                     if($var){
                         if($email=='admin@mydb.com')
-                        header("Location::admin.php");
+                        header("Location:admin1.php");
                         else
                     header("Location: prof_loggedin.php");
                     }

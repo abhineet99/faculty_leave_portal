@@ -44,7 +44,7 @@ if(isset($_POST['leavee'])){
 		$result=pg_query($query);
 		$result=pg_fetch_row($result);
 		$days=$result[0];	
-		echo $days;
+		//echo $days;
 
 
 		$sender_id=$email;

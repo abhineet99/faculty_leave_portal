@@ -40,27 +40,14 @@ Released   : 20110825
 	<!-- end #header -->
 	<div id="menu">
 		<ul>
-			<li class="prof_loggedin.php"><a href="prof_loggedin.php">Profile</a></li>
-			<li><a href="update.php">Update Profile</a></li>
-			<li><a href="apply_leave.php">Apply Leave</a></li>
-			<!--<li><a href="#">Photos</a></li>
-			<li><a href="#">About</a></li>
-			<li><a href="#">Links</a></li>-->
-			<li><a href="leave_status.php">Leave Status</a></li>
+			
+			<li><a href="update_post.php">Update Faculty</a></li>
+			<li><a href="retire_faculty.php">Retire Faculty</a></li>
+			<li><a href="assign_post.php">Assign Posts</a></li>
+            <li><a href="hierarchy.php">Update Hierarchy</a></li>
+			<li><a href="reset_leaves.php">Reset Leaves</a></li>
 			<li><a href="home_faculty.php">Home</a></li>
 			<li><a href="logout.php">Logout</a></li>
-			<?php $facult=pg_connect("host=localhost port =5432 dbname=prof_leave user =postgres password = mahi121");
-		$query="Select post from facult.faculty where facult.faculty.email='$email'";
-		$pos=pg_query($query);
-		$pos = pg_fetch_row($pos);
-		$pos=$pos[0];
-		//3echo $pos;
-		$query="Select count(next_post) from facult.next_guy where facult.next_guy.next_post='$pos'";
-		$pos=pg_query($query);
-		$pos = pg_fetch_row($pos);
-		$pos=$pos[0];
-		if($pos!=0)
-		print "<li><a href='pending_with_me.php'>pending</a></li>";?>
 		</ul>
 	</div>
 	<!-- end #menu -->
@@ -78,56 +65,17 @@ Released   : 20110825
 <strong><h3><?php echo $_SESSION['uname']; ?></h3></strong><!--Please find my CV <a href="pdf/CV_of_VenkataKalyanTavva.pdf">here</a>.--></p>
 	<div>
 		<?php 
-		$m=(new MongoDB\Client);
-		$dp=$m->profile_fac;
-		$collection=$dp->fac_prof;
-		$doc=$collection->findOne(['email'=>$email]);
-		$query=$collection->findOne(
-                    ['email'=>$email],
-                    ['projection'=>['_id'=>0,'Designation'=>1]]);
-            if(sizeof($query)>0){
-                echo "<strong><h3>Designation:</h3></strong>";
-                echo $doc['Designation'];
-                echo "<br> <br>";
-            }
-            $query=$collection->findOne(
-                ['email'=>$email],
-                ['projection'=>['_id'=>0,'About'=>1]]);
-            if(sizeof($query)>0){
-                echo "<strong><h3>About: </h3></strong>";
-                echo $doc['About'];
-                echo "<br> <br>";
-            }
-            $query=$collection->findOne(
-                ['email'=>$email],
-                ['projection'=>['_id'=>0,'Educational Background'=>1]]);            
-            if(sizeof($query)>0){
-                echo "<strong><h3>Educational background </h3></strong> ";
-                echo $doc['Educational Background'];
-
-                echo "<br> <br>";
-            }
-            $query=$collection->findOne(
-                ['email'=>$email],
-                ['projection'=>['_id'=>0,'Publications'=>1]]);            
-            if(sizeof($query)>0){
-            echo "<strong><h3>Publications</h3></strong>";
-            foreach($doc['Publications'] as $pub){
-                echo $pub;
-                echo"<br> <br>";
-            }
-            }
-            $query=$collection->findOne(
-                ['email'=>$email],
-                ['projection'=>['_id'=>0,'Research Interests'=>1]]);            
-            if(sizeof($query)>0){
-                echo "<strong><h3><li>Research Interests </li></h3></strong>";
-                echo $doc['Research Interests'];
-                echo "<br>";
-            } 
-	
-							//echo "<li><p>If you are wondering what 'Namasthe' means, in India, it is a formal way of greeting people. It means 'I bow to the God in you'. It acknowledges the fact that there is presence of God in every being.</li></p>";?>
-						</div>
+		
+         echo "<form action='query.php' method ='post' >
+			<div class='item'>
+          <p>Database Queries Box</p>
+          <textarea name = 'query1' rows='5' ></textarea>
+        </div>
+         <div class='btn-block'>
+          <button type='submit' name='query' >Send</button>
+        </div>
+      </form>";
+           ?>			</div>
 						</div>
 					</div>
 					<!--<div class="post">

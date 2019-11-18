@@ -96,7 +96,7 @@ if(isset($_POST['forward']))
 	 }
 	 else 
 	 {
-	$facult=pg_connect("host=localhost port =5432 dbname=prof_leave user =postgres password = mahi121");
+		  $facult=pg_connect("host=localhost port =5432 dbname=prof_leave user =postgres password = mahi121");
     $query="Select post from facult.faculty where facult.faculty.email='$email'";
     $post=pg_query($query);
     $post = pg_fetch_row($post);

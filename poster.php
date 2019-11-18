@@ -4,29 +4,40 @@
     if(!chkLogin()){
         header("Location: login.php");
     }
-    $email = $_SESSION['email'];
-    $x=$_GET['variable1'];
+	$email = $_SESSION['email'];
+	$post =$_GET['post'];
+	$department =$_GET['department'];
+	$x=$_GET['action'];
+	$facult=pg_connect("host=localhost port =5432 dbname=prof_leave user =postgres password = mahi121");
+	$query="select count(name) from facult.posts where name = '$post'";
+	$valid_post=pg_query($query);
+	$valid_post=pg_fetch_row($valid_post);
+	$valid_post=$valid_post[0];
+	if($valid_post!=0 && ($department=='cse' ||$department=='me'||$department=='ee'||$department==''))
+	{
+	$query ="Select max_leaves from facult.posts where posts.name='$post'";
+	$max_leaves=pg_query($query);
+	$max_leaves=pg_fetch_row($max_leaves);
+	$max_leaves=$max_leaves[0];
+	$borro=0;
+	if($post!='faculty')
+	{
+		$query = "insert into facult.faculty(email,post,department,leaves_left,leaves_borrowed) Values('$x','faculty','$department','$max_leaves','$borro')";
+		pg_query($query);
+		$query ="Update facult.faculty set post ='$post' where email = '$x'";
+	pg_query($query);
+	echo $post;
+	}
+	else
+	{
+	$query = "insert into facult.faculty(email,post,department,leaves_left,leaves_borrowed) Values('$x','$post','$department','$max_leaves','$borro')";
+	pg_query($query);
+	}
+	header("Location: admin1.php");
+	}
+	else
+	{echo "Wrong Entries ";
+           echo"<br>";
+		   echo "<a href='admin1.php'>Admin_Home</a> ";
+	}
 ?>
-<html>
-    <head>
-        <link href="css/bootstrap.min.css" rel="stylesheet">
-    </head>
-    
-    <body>
-    <form class="form-horizontal" action="poster_action.php" method="post">
-        <div class="form-group">
-            <label for="inputPassword3" class="col-sm-2 control-label">Insert post</label>
-            <div class="col-sm-10">
-              <input type="text" class="form-control" id="About" name="About" placeholder="About" required>
-              <input type='hidden' name='var' value='<?php echo "$var";?>'/> 
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-              <button type="submit" class="btn btn-default" name="reg">Apply</button>
-            </div>
-          </div>
-    </form>
-        <script src="myscript.js" type="text/javascript"></script>
-    </body>
-</html>

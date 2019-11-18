@@ -8,7 +8,7 @@
     $facult=pg_connect("host=localhost port =5432 dbname=prof_leave  user =postgres password = mahi121");
 	function display_db(){
 		$m=(new MongoDB\Client);
-		$dp=$m->try_1_nov_9;
+		$dp=$m->profile_fac;
 		$collection=$dp->fac_prof;
         //$collection->insertOne(["name"=>"Abhineet","Designation"=>"FuduProf","ResearchIntern"=>"Aish"]);
         //$collection->insertOne(["name"=>"Piyush","Designation"=>"LmaoProf","ResearchIntern"=>"AishHiAish"]);
@@ -18,13 +18,6 @@
 		$result=pg_query($query);
 		$resultArr = pg_fetch_all($result);
 //print_r($resultArr);
-foreach($resultArr as $array)
-{
-    echo '<tr>
-            <td>'. $array['name'].'</td>
-            <td>'. $array['max_leaves'].'</td>
-          </tr>';
-}
 	//foreach(pg_query($query) as $row)
 	//{
 	//	print $row['name'];
@@ -69,6 +62,26 @@ foreach($resultArr as $array)
             if(sizeof($query)>0){
             echo "Publications <br>";
             foreach($doc['Publications'] as $pub){
+                echo $pub;
+                echo"<br> <br>";
+            }
+            }
+            $query=$collection->findOne(
+                ['email'=>$email],
+                ['projection'=>['_id'=>0,'Grants'=>1]]);            
+            if(sizeof($query)>0){
+            echo "Grants <br>";
+            foreach($doc['Grants'] as $pub){
+                echo $pub;
+                echo"<br> <br>";
+            }
+            }
+            $query=$collection->findOne(
+                ['email'=>$email],
+                ['projection'=>['_id'=>0,'Awards'=>1]]);            
+            if(sizeof($query)>0){
+            echo "Awards <br>";
+            foreach($doc['Awards'] as $pub){
                 echo $pub;
                 echo"<br> <br>";
             }

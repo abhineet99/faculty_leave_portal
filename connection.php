@@ -5,7 +5,7 @@
 
      //echo "Connection to database Successfull!";echo"<br />";
 
-    $db = $m->try_1_nov_9;
+    $db = $m->profile_fac;
     //echo "Databse loginreg selected";
     $collection = $db->fac_prof; 
     //echo "Collection userdata Selected Successfully";

@@ -1,10 +1,9 @@
 <?php
     require_once 'library.php';
-   // require_once 'login_action.php';
-    if(!chkLogin()){
-        header("Location: login.php");
-    }
-    $email = $_SESSION['email'];
+    $name = $_GET['variabl2'];
+	$last = $_GET['variabl3'];
+	$email = $_GET['variabl1'];
+	
     //echo $email;
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -32,7 +31,7 @@ Released   : 20110825
 	<div id="header-wrapper">
 		<div id="header">
 			<div id="logo">
-				<h1><a href="#"></strong><?php echo $_SESSION["uname"]; ?></strong> </a></h1>
+				<h1><a href="#"></strong><?php echo $name; ?></strong> </a></h1>
 				<!--<p>template design by <a href="http://www.freecsstemplates.org/">CSS Templates</a></p>-->
 			</div>
 		</div>
@@ -41,26 +40,8 @@ Released   : 20110825
 	<div id="menu">
 		<ul>
 			<li class="prof_loggedin.php"><a href="prof_loggedin.php">Profile</a></li>
-			<li><a href="update.php">Update Profile</a></li>
-			<li><a href="apply_leave.php">Apply Leave</a></li>
-			<!--<li><a href="#">Photos</a></li>
-			<li><a href="#">About</a></li>
-			<li><a href="#">Links</a></li>-->
-			<li><a href="leave_status.php">Leave Status</a></li>
 			<li><a href="home_faculty.php">Home</a></li>
-			<li><a href="logout.php">Logout</a></li>
-			<?php $facult=pg_connect("host=localhost port =5432 dbname=prof_leave user =postgres password = mahi121");
-		$query="Select post from facult.faculty where facult.faculty.email='$email'";
-		$pos=pg_query($query);
-		$pos = pg_fetch_row($pos);
-		$pos=$pos[0];
-		//3echo $pos;
-		$query="Select count(next_post) from facult.next_guy where facult.next_guy.next_post='$pos'";
-		$pos=pg_query($query);
-		$pos = pg_fetch_row($pos);
-		$pos=$pos[0];
-		if($pos!=0)
-		print "<li><a href='pending_with_me.php'>pending</a></li>";?>
+			<li><a href="login.php">Login</a></li>
 		</ul>
 	</div>
 	<!-- end #menu -->
@@ -75,7 +56,6 @@ Released   : 20110825
 						<div class="entry">
 							<p><img src="images/mypic.jpg" width="220" height="210" alt="" class="alignleft border" /> 
 
-<strong><h3><?php echo $_SESSION['uname']; ?></h3></strong><!--Please find my CV <a href="pdf/CV_of_VenkataKalyanTavva.pdf">here</a>.--></p>
 	<div>
 		<?php 
 		$m=(new MongoDB\Client);
@@ -126,7 +106,7 @@ Released   : 20110825
                 echo "<br>";
             } 
 	
-							//echo "<li><p>If you are wondering what 'Namasthe' means, in India, it is a formal way of greeting people. It means 'I bow to the God in you'. It acknowledges the fact that there is presence of God in every being.</li></p>";?>
+							echo "<li><p>If you are wondering what 'Namasthe' means, in India, it is a formal way of greeting people. It means 'I bow to the God in you'. It acknowledges the fact that there is presence of God in every being.</li></p>";?>
 						</div>
 						</div>
 					</div>

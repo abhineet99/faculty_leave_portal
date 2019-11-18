@@ -16,18 +16,19 @@
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">WebSiteName</a>
+      <a class="navbar-brand" href="#">Faculty Portal</a>
     </div>
     <ul class="nav navbar-nav">
-      <li class="active"><a href="#">Home</a></li>
+      <li class="active"><a href="home_faculty.php">Home</a></li>
       <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#home_faculty.php">Department <span class="caret"></span></a>
         <ul class="dropdown-menu">
-          <li><a href="login.php">Computer Science</a></li>
-          <li><a href="#">Mechanical</a></li>
-          <li><a href="#">Electrical</a></li>
+          <li><a href="profile_display.php?variable1=cse">Computer Science Engineering</a></li>
+          <li><a href="profile_display.php?variable1=me">Mechanical Engineering</a></li>
+          <li><a href="profile_display.php?variable1=ee">Electrical Engineering</a></li>
         </ul>
       </li>
-      <li><a href="#">Offcials</a></li>
+	  <li><a href="official_profile_display.php">Offcials</a></li>
+      <li><a href="prof_loggedin.php">My Profile</a></li>
     </ul>
 	<ul class="nav navbar-nav navbar-right">
 	<div>

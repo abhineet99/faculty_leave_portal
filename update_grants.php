@@ -7,11 +7,16 @@
         $grant_info = $_POST['grant'];
 		$email = $_SESSION['email'];
         $doc_one=$collection->findOne(
-            ["email"=>$email]);
+            ["email"=>$email]
+			,['projection'=>['_id'=>0,'Grants'=>1]]);
+		if(sizeof($doc_one)>0){
         $cur_pubs=(array)$doc_one['Grants'];
        // print_r($cur_pubs);
-        array_push($cur_pubs,$grant_info);
+        array_push($cur_pubs,$grant_info);}
+
        // print_r($cur_pubs);
+	   else
+		$cur_pubs=(array)$grant_info;
         $doc_one=$collection->updateOne(
             ["email"=>$email],
             ['$set'=> ['Grants'=>$cur_pubs] ]);    

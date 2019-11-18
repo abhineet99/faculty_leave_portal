@@ -10,11 +10,16 @@
         $email = $_SESSION['email'];
         $publication=$pub_title.", ".$conf_name.", ".$year;
         $doc_one=$collection->findOne(
-            ["email"=>$email]);
+            ["email"=>$email]
+			,['projection'=>['_id'=>0,'Publications'=>1]]);
+		if(sizeof($doc_one)>0){
         $cur_pubs=(array)$doc_one['Publications'];
        // print_r($cur_pubs);
-        array_push($cur_pubs,$publication);
+        array_push($cur_pubs,$publication);}
+
        // print_r($cur_pubs);
+	   else
+		$cur_pubs=(array)$publication;
         $doc_one=$collection->updateOne(
             ["email"=>$email],
             ['$set'=> ['Publications'=>$cur_pubs] ]);    
