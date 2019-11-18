@@ -1,4 +1,5 @@
 <?php
+	require_once 'connection.php';
     require_once 'library.php';
    // require_once 'login_action.php';
     if(!chkLogin()){
@@ -119,7 +120,87 @@
             </div>
           </div>
     </form>
-
+	<form method="post" action="del_pubs.php">  
+            <p>
+			</label>Select Publication to delete</label>
+			<br>
+			<select name="selectPub">
+            <option value="">--- Select ---</option>  
+            <?php
+				$doc_one=$collection->findOne(
+				["email"=>$email]
+				,['projection'=>['_id'=>0,'Publications'=>1]]);
+				
+				if(sizeof($doc_one)==0){
+					echo "No Publications Entered!";
+				}
+				else{
+					$doc_one=$doc_one['Publications'];
+					foreach($doc_one as $key=>$doc){
+						echo $doc;
+						echo '<option value='.$key.'>'.$doc.'</option>';
+					}
+				}
+              
+            ?>  
+			</select>
+			</p>
+            <input type="submit" name="delete_pub" value="Delete Publication" class="btn btn-primary"/>  
+        </form>  
+			<form method="post" action="del_grants.php">  
+            <p>
+			</label>Select Grant to delete</label>
+			<br>
+			<select name="selectGrant">
+            <option value="">--- Select ---</option>  
+            <?php
+				$doc_one=$collection->findOne(
+				["email"=>$email]
+				,['projection'=>['_id'=>0,'Grants'=>1]]);
+				
+				if(sizeof($doc_one)==0){
+					echo "No Grants Entered!";
+				}
+				else{
+					$doc_one=$doc_one['Grants'];
+					foreach($doc_one as $key=>$doc){
+						echo $doc;
+						echo '<option value='.$key.'>'.$doc.'</option>';
+					}
+				}
+              
+            ?>  
+			</select>
+			</p>
+            <input type="submit" name="delete_grant" value="Delete Grant" class="btn btn-primary"/>  
+        </form>
+			<form method="post" action="del_awards.php">  
+            <p>
+			</label>Select Award to delete</label>
+			<br>
+			<select name="selectAward">
+            <option value="">--- Select ---</option>  
+            <?php
+				$doc_one=$collection->findOne(
+				["email"=>$email]
+				,['projection'=>['_id'=>0,'Awards'=>1]]);
+				
+				if(sizeof($doc_one)==0){
+					echo "No Awards Entered!";
+				}
+				else{
+					$doc_one=$doc_one['Awards'];
+					foreach($doc_one as $key=>$doc){
+						echo $doc;
+						echo '<option value='.$key.'>'.$doc.'</option>';
+					}
+				}
+              
+            ?>  
+			</select>
+			</p>
+            <input type="submit" name="delete_awards" value="Delete Award" class="btn btn-primary"/>  
+        </form>
         <script src="myscript.js" type="text/javascript"></script>
     </body>
 </html>

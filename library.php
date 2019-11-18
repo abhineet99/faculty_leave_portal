@@ -60,32 +60,37 @@
                 ['email'=>$email],
                 ['projection'=>['_id'=>0,'Publications'=>1]]);            
             if(sizeof($query)>0){
+			if(sizeof($doc['Publications'])>0){
             echo "Publications <br>";
             foreach($doc['Publications'] as $pub){
                 echo $pub;
-                echo"<br> <br>";
+			echo"<br> <br>";}
             }
             }
             $query=$collection->findOne(
                 ['email'=>$email],
                 ['projection'=>['_id'=>0,'Grants'=>1]]);            
             if(sizeof($query)>0){
+			if(sizeof($doc['Grants'])>0){
             echo "Grants <br>";
             foreach($doc['Grants'] as $pub){
                 echo $pub;
                 echo"<br> <br>";
             }
             }
+			}
             $query=$collection->findOne(
                 ['email'=>$email],
                 ['projection'=>['_id'=>0,'Awards'=>1]]);            
             if(sizeof($query)>0){
+			if(sizeof($doc['Awards'])>0){
             echo "Awards <br>";
             foreach($doc['Awards'] as $pub){
                 echo $pub;
                 echo"<br> <br>";
             }
             }
+			}
             $query=$collection->findOne(
                 ['email'=>$email],
                 ['projection'=>['_id'=>0,'Research Interests'=>1]]);            

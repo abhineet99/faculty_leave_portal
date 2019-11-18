@@ -88,6 +88,44 @@
             </div>
           </div>
     </form>	
+	<form class="form-horizontal" action="update_post_table.php" method="post">
+          <div class="form-group">
+            <label for="inputFname3" class="col-sm-2 control-label">Post</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="sender" name="sender" placeholder="Post" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputLname3" class="col-sm-2 control-label">Max Leaves</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="inputLname3" name="reciever" placeholder="Post" required>
+            </div>
+          </div>    
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <button type="submit" class="btn btn-default" name="reg">Update in Post Table</button>
+            </div>
+          </div>
+    </form>	
+	<form class="form-horizontal" action="insert_post_table.php" method="post">
+          <div class="form-group">
+            <label for="inputFname3" class="col-sm-2 control-label">Post</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="sender" name="sender" placeholder="Post" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputLname3" class="col-sm-2 control-label">Max Leaves</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="inputLname3" name="reciever" placeholder="Post" required>
+            </div>
+          </div>    
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <button type="submit" class="btn btn-default" name="reg">Insert in Post Table</button>
+            </div>
+          </div>
+    </form>	
         <script src="myscript.js" type="text/javascript"></script>
     </body>
 </html>
