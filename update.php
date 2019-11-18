@@ -50,7 +50,34 @@
               <button type="submit" class="btn btn-default" name="reg">Add publication</button>
             </div>
           </div>
-    </form>     
+    </form>  
+		   <form class="form-horizontal" action="update_grants.php" method="post">
+          <div class="form-group">
+            <label for="inputFname3" class="col-sm-2 control-label">Add info on grants</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="inputFname3" name="grant" placeholder="Publication Title" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <button type="submit" class="btn btn-default" name="reg">Add grant</button>
+            </div>
+          </div>
+    </form> 
+    </form>  
+		   <form class="form-horizontal" action="update_awards.php" method="post">
+          <div class="form-group">
+            <label for="inputFname3" class="col-sm-2 control-label">Add award</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="inputFname3" name="award" placeholder="Publication Title" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <button type="submit" class="btn btn-default" name="reg">Add!</button>
+            </div>
+          </div>
+    </form>
     <form class="form-horizontal" action="update_researchinterests.php" method="post">
           <div class="form-group">
             <label for="inputPassword3" class="col-sm-2 control-label">Update your research interests</label>
