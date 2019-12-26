@@ -3,7 +3,7 @@
 A faculty portal, for handling faculty homepages, & applying and handling leaves.
 
 The ER diagram can be found in a pdf file "ERDiagram.pdf".
-It is made using [LucidChart](https://www.lucidchart.com/)
+It is made using [LucidChart](https://www.lucidchart.com/).
 
 Made with MongoDB, PHP and :heart: by :
 
